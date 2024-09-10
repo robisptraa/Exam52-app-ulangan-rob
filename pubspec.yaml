@@ -38,6 +38,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+  circle_nav_bar: ^2.1.0+1
   
 
 dev_dependencies:

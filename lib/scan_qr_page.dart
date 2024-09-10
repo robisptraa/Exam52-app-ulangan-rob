@@ -46,7 +46,7 @@ class _ScanQRPageState extends State<ScanQRPage> {
 
   Widget _buildControlOverlay() {
     return Positioned(
-      bottom: 20,
+      bottom: 150,
       left: 20,
       right: 20,
       child: Center(
@@ -61,12 +61,26 @@ class _ScanQRPageState extends State<ScanQRPage> {
                     ),
                   );
                 },
-                child: Text('Run Learn'),
-              )
-            : Text(
-                'Scan a QR code',
-                style: TextStyle(color: Colors.blueAccent, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
+                //style button
+                style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.blueAccent, // Warna teks tombol
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12), // Border radius
+                ),
+                elevation: 5, // Shadow
               ),
+                child: Text('Run Learn',
+                 style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Raleway',
+                ),),
+              )
+              : Text(
+                'Scan a QR code',
+                style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
+            ),
       ),
     );
   }

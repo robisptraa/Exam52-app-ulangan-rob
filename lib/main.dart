@@ -1,3 +1,4 @@
+import 'package:examPI52/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'home_page.dart';
@@ -19,7 +20,17 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  
+
+  const MyApp({Key? key,}) : super(key: key);
+
+  
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AppProvider>(context);
@@ -36,7 +47,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         ],
-      home: MainPage(),
+      home: Navbar(title: "robiii",),
 
     );
   }
@@ -44,13 +55,19 @@ class MyApp extends StatelessWidget {
 
 class MainPage extends StatefulWidget {
   @override
-  _MainPageState createState() => _MainPageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
+class _MyHomePageState extends State<MyApp>
+    with SingleTickerProviderStateMixin {
+  int _tabIndex = 1;
+  int get tabIndex => _tabIndex;
+  set tabIndex(int v) {
+    _tabIndex = v;
+    setState(() {});
+  }
 
-  final List<Widget> _pages = <Widget>[
+  final List<Widget> _pages = [
     HomePage(),
     ScanQRPage(),
     SettingsPage(),
@@ -58,14 +75,14 @@ class _MainPageState extends State<MainPage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _tabIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: _pages[_tabIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.blueAccent,
         items: const <BottomNavigationBarItem>[
@@ -73,7 +90,7 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner), label: 'Scan QR'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: _tabIndex,
         unselectedItemColor: Colors.black,
         selectedItemColor: Colors.white,
         showUnselectedLabels: true,
