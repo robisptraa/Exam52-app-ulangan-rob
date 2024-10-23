@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+
+
+ void _secureScreen() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
 
 class HomePage extends StatelessWidget {
   final TextEditingController _urlController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    _secureScreen(); 
     return Scaffold(
       //appbar
       appBar: AppBar(title: Text('Exam52',  style: TextStyle( fontFamily: 'Raleway', // Custom font

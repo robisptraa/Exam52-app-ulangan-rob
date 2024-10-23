@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app_provider.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+
+ void _secureScreen() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
 
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AppProvider>(context);
+    _secureScreen(); 
 
     return Scaffold(
       //appbar

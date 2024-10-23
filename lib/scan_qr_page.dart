@@ -2,6 +2,12 @@ import 'package:examPI52/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+
+
+ void _secureScreen() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
 
 class ScanQRPage extends StatefulWidget {
   @override
@@ -12,9 +18,11 @@ class _ScanQRPageState extends State<ScanQRPage> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
   String? qrText;
+ 
 
   @override
   Widget build(BuildContext context) {
+    _secureScreen(); 
     return Scaffold(
       //appbar
       appBar: AppBar(title: Text('Exam52',  style: TextStyle( fontFamily: 'Raleway', // Custom font

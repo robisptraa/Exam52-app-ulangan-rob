@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+
+ void _secureScreen() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
 
 class WebviewPage extends StatefulWidget {
   final String url;
@@ -32,6 +37,7 @@ class _WebviewPageState extends State<WebviewPage> {
     ),
   )
   ..loadRequest(Uri.parse(widget.url));
+  _secureScreen();
   }
   @override
   Widget build(BuildContext context) {

@@ -6,6 +6,8 @@ import 'scan_qr_page.dart';
 import 'settings_page.dart';
 import 'app_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+
 
 
 
@@ -19,6 +21,10 @@ void main() {
     ),
   );
 }
+
+  void _secureScreen() async { //disable ss
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
 
 class MyApp extends StatefulWidget {
   
@@ -34,6 +40,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AppProvider>(context);
+    _secureScreen(); //disable ss
     return MaterialApp(
       title: 'Exam52',
       theme: ThemeData(
